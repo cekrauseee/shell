@@ -1,30 +1,39 @@
 ---
-description: "Um chat com IA em estilo terminal, construído com a API Responses da OpenAI."
-metaDescription: "Shell é uma interface de chat com IA em estilo terminal, construída com Next.js e a API Responses da OpenAI."
-summary: "Shell é um chat com IA em estilo terminal centrado em uma única conversa. Ele combina controles orientados ao teclado, respostas legíveis em Markdown e uma interface mínima em tela cheia."
+description: >-
+  um experimento de chat com ia e jeito de terminal.
+metaDescription: >-
+  um chat com ia inspirado em terminais, com atalhos de teclado,
+  respostas em markdown e uma conversa que fica na memória do navegador.
+summary: >-
+  fiz o shell como um chat com ia focado em uma conversa. ele tem um cursor
+  próprio, mensagens com várias linhas, histórico de prompts pelo teclado
+  e respostas em markdown. as chamadas à api da openai passam pelo servidor,
+  e a conversa fica na memória do navegador. é um experimento de desenvolvimento.
 highlights:
-  - "Chat com IA"
-  - "Interface de terminal"
-  - "Next.js"
-  - "API da OpenAI"
-  - "Markdown"
-  - "Acessibilidade"
+  - um campo de texto e uma conversa
+  - atalhos de teclado e histórico de prompts
+  - cursor próprio sobre um campo de texto nativo
+  - respostas em markdown e opção de reduzir animações
 ---
 
-## Produto
+o shell abre com um campo de texto e um cursor em bloco. você escreve,
+o assistente responde, e a conversa vai preenchendo a tela.
 
-Visitantes escrevem prompts com várias linhas, percorrem prompts anteriores com as setas e limpam a conversa com um atalho de teclado conhecido. O assistente responde no idioma da mensagem mais recente.
+fiz a interface pensando no teclado. enter envia a mensagem, shift+enter
+abre uma nova linha, e as setas trazem de volta os prompts anteriores.
+control ou command + l limpa a conversa.
 
-A interface usa a objetividade de um terminal sem fingir ser uma linha de comando. A conversa continua sendo a única superfície principal.
+o cursor tem um visual próprio, mas o campo de texto por baixo é nativo.
+dá para editar e selecionar texto como de costume. as respostas usam markdown
+e aparecem palavra por palavra depois de recebidas. quem prefere reduzir
+as animações vê a resposta sem esse efeito.
 
-## O que construí
+## um experimento pequeno
 
-Construí a interface de chat em tela cheia com um cursor de bloco personalizado, histórico de prompts, estados de espera e erro e anúncios de status acessíveis.
+o chat chama a api da openai pelo servidor. a conversa fica na memória do
+navegador e desaparece ao recarregar a página ou limpar o chat. as chamadas
+também desativam o armazenamento das respostas na api.
 
-As respostas renderizam GitHub Flavored Markdown com segurança e aparecem palavra por palavra. A animação é desativada quando o visitante prefere movimento reduzido.
-
-## Decisões de engenharia
-
-Uma Server Action do Next.js valida a conversa antes de chamar a API Responses da OpenAI. A chave da API permanece no servidor, e as solicitações desativam o armazenamento de respostas pela OpenAI.
-
-As mensagens permanecem na memória do navegador e desaparecem após recarregar a página ou limpar a conversa. O projeto ainda não inclui contas, histórico persistente, limites de uso ou os controles necessários para um serviço público em produção.
+é um experimento de desenvolvimento, sem contas ou histórico salvo.
+ainda faltam os controles de acesso e de uso necessários para abrir
+o chat como um serviço público.
