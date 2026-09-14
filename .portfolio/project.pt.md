@@ -1,39 +1,37 @@
 ---
 description: >-
-  um experimento de chat com ia e jeito de terminal.
+  Um experimento de chat com IA, com interface inspirada em terminais e
+  interação pelo teclado.
 metaDescription: >-
-  um chat com ia inspirado em terminais, com atalhos de teclado,
-  respostas em markdown e uma conversa que fica na memória do navegador.
+  O Shell explora uma interface de chat concentrada em uma única conversa, com
+  mensagens de várias linhas, histórico de prompts e respostas em Markdown.
 summary: >-
-  fiz o shell como um chat com ia focado em uma conversa. ele tem um cursor
-  próprio, mensagens com várias linhas, histórico de prompts pelo teclado
-  e respostas em markdown. as chamadas à api da openai passam pelo servidor,
-  e a conversa fica na memória do navegador. é um experimento de desenvolvimento.
+  O Shell explora uma interface de chat concentrada em uma única conversa. A
+  aplicação combina a linguagem visual dos terminais com mensagens de várias
+  linhas, histórico de prompts e respostas em Markdown.
 highlights:
-  - um campo de texto e uma conversa
-  - atalhos de teclado e histórico de prompts
-  - cursor próprio sobre um campo de texto nativo
-  - respostas em markdown e opção de reduzir animações
+  - entrada nativa com apresentação personalizada
+  - histórico de prompts
+  - respostas em Markdown
+  - uma sessão temporária, sem contas ou histórico persistente
 ---
 
-o shell abre com um campo de texto e um cursor em bloco. você escreve,
-o assistente responde, e a conversa vai preenchendo a tela.
+O Shell explora uma interface de chat concentrada em uma única conversa. A tela começa com um campo de texto e um cursor em bloco; as mensagens ocupam o espaço conforme a interação avança.
 
-fiz a interface pensando no teclado. enter envia a mensagem, shift+enter
-abre uma nova linha, e as setas trazem de volta os prompts anteriores.
-control ou command + l limpa a conversa.
+A aplicação combina a linguagem visual dos terminais com mensagens de várias linhas, histórico de prompts e respostas em Markdown.
 
-o cursor tem um visual próprio, mas o campo de texto por baixo é nativo.
-dá para editar e selecionar texto como de costume. as respostas usam markdown
-e aparecem palavra por palavra depois de recebidas. quem prefere reduzir
-as animações vê a resposta sem esse efeito.
+## Entrada nativa com apresentação personalizada
 
-## um experimento pequeno
+O cursor em bloco é desenhado sobre um campo de texto nativo. A apresentação visual é personalizada, enquanto edição, seleção e entrada de texto continuam apoiadas no comportamento do navegador.
 
-o chat chama a api da openai pelo servidor. a conversa fica na memória do
-navegador e desaparece ao recarregar a página ou limpar o chat. as chamadas
-também desativam o armazenamento das respostas na api.
+Os controles de teclado permitem enviar mensagens, inserir novas linhas, recuperar prompts anteriores e limpar a conversa. Estados de espera e erro também são anunciados para tecnologias assistivas.
 
-é um experimento de desenvolvimento, sem contas ou histórico salvo.
-ainda faltam os controles de acesso e de uso necessários para abrir
-o chat como um serviço público.
+As respostas são recebidas por completo antes de serem apresentadas com uma animação de revelação por palavras. A preferência por movimento reduzido desativa esse efeito.
+
+## Estado da conversa e integração com o modelo
+
+O navegador mantém a conversa ativa em memória e envia seu conteúdo a uma Server Action a cada nova mensagem. O servidor valida a estrutura e a ordem das mensagens antes de chamar a API Responses da OpenAI. A chave de acesso permanece no servidor, e as chamadas desativam o armazenamento de respostas da API.
+
+Recarregar a página ou limpar o chat remove o histórico local. A limpeza também invalida respostas em andamento, evitando que uma chamada concluída depois volte a preencher a conversa.
+
+O escopo atual é o de um experimento de desenvolvimento: uma sessão temporária, sem contas, histórico persistente ou controles de uso para operação como serviço público.

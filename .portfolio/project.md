@@ -3,39 +3,39 @@ slug: shell
 name: cekrause/shell
 repositoryUrl: https://github.com/cekrauseee/shell
 description: >-
-  a small ai chat experiment with the feel of a terminal.
+  An AI chat experiment with a terminal-inspired interface and keyboard
+  controls.
 metaDescription: >-
-  an ai chat experiment with a terminal-style interface, keyboard controls,
-  markdown responses, and a conversation kept in browser memory.
+  Shell explores a chat interface built around a single conversation, with
+  multiline input, prompt history, and Markdown responses.
 summary: >-
-  i built shell as a focused ai chat with a custom block cursor, multiline
-  input, keyboard prompt history, and markdown responses. it calls the
-  openai api through the server and keeps the conversation in browser
-  memory. it is a development experiment.
+  Shell explores a chat interface built around a single conversation. It opens
+  with a text field and a block cursor; messages fill the screen as the
+  conversation develops. The application combines the visual language of
+  terminals with multiline input, prompt history, and Markdown responses.
 highlights:
-  - "a prompt and a single conversation"
-  - "keyboard controls and prompt history"
-  - "a custom cursor with native text input"
-  - "markdown responses and reduced-motion support"
+  - native text input with a custom presentation
+  - conversation state in browser memory
+  - OpenAI Responses API
+  - a development experiment
 ---
 
-shell opens with a prompt and a block cursor. you write, the assistant
-replies, and the conversation fills the screen.
+Shell explores a chat interface built around a single conversation. It opens with a text field and a block cursor; messages fill the screen as the conversation develops.
 
-i built the interface around the keyboard. enter sends a message, shift+enter
-adds a line, and the arrow keys bring back earlier prompts. control or command
-+ l clears the conversation.
+The application combines the visual language of terminals with multiline input, prompt history, and Markdown responses.
 
-the cursor is custom, but the input underneath is a native text field, so
-ordinary editing and selection still work. responses use markdown and appear
-word by word after they arrive. the animation is skipped for people who prefer
-reduced motion.
+## Native text input with a custom presentation
 
-## keeping the scope small
+The block cursor is drawn over a native text field. Its appearance is custom, while editing, selection, and text entry continue to rely on the browser’s standard behavior.
 
-the chat calls the openai api through the server. the app keeps the
-conversation in browser memory, so reloading or clearing the page removes it.
-api response storage is disabled for these requests.
+Keyboard controls support sending messages, adding line breaks, retrieving earlier prompts, and clearing the conversation. Waiting and error states are also announced to assistive technologies.
 
-it's a development experiment, with no accounts or saved history. it also
-doesn't have the access and usage controls needed to run as a public service.
+Responses arrive in full before being displayed with a word-by-word reveal animation. The effect is disabled when reduced motion is preferred.
+
+## Conversation state and model integration
+
+The browser holds the active conversation in memory and sends it to a Server Action with each new message. The server validates the structure and order of the messages before calling the OpenAI Responses API. The API key stays on the server, and requests disable API response storage.
+
+Reloading the page or clearing the chat removes the local history. Clearing also invalidates in-flight responses, preventing a request that finishes later from repopulating the conversation.
+
+The current scope is a development experiment: a temporary session, without accounts, persistent history, or the usage controls needed to operate as a public service.
