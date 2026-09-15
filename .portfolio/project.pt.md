@@ -1,30 +1,37 @@
 ---
-description: "Um chat com IA em estilo terminal, construído com a API Responses da OpenAI."
-metaDescription: "Shell é uma interface de chat com IA em estilo terminal, construída com Next.js e a API Responses da OpenAI."
-summary: "Shell é um chat com IA em estilo terminal centrado em uma única conversa. Ele combina controles orientados ao teclado, respostas legíveis em Markdown e uma interface mínima em tela cheia."
+description: >-
+  Um experimento de chat com IA, com interface inspirada em terminais e
+  interação pelo teclado.
+metaDescription: >-
+  O Shell explora uma interface de chat concentrada em uma única conversa, com
+  mensagens de várias linhas, histórico de prompts e respostas em Markdown.
+summary: >-
+  O Shell explora uma interface de chat concentrada em uma única conversa. A
+  aplicação combina a linguagem visual dos terminais com mensagens de várias
+  linhas, histórico de prompts e respostas em Markdown.
 highlights:
-  - "Chat com IA"
-  - "Interface de terminal"
-  - "Next.js"
-  - "API da OpenAI"
-  - "Markdown"
-  - "Acessibilidade"
+  - entrada nativa com apresentação personalizada
+  - histórico de prompts
+  - respostas em Markdown
+  - uma sessão temporária, sem contas ou histórico persistente
 ---
 
-## Produto
+O Shell explora uma interface de chat concentrada em uma única conversa. A tela começa com um campo de texto e um cursor em bloco; as mensagens ocupam o espaço conforme a interação avança.
 
-Visitantes escrevem prompts com várias linhas, percorrem prompts anteriores com as setas e limpam a conversa com um atalho de teclado conhecido. O assistente responde no idioma da mensagem mais recente.
+A aplicação combina a linguagem visual dos terminais com mensagens de várias linhas, histórico de prompts e respostas em Markdown.
 
-A interface usa a objetividade de um terminal sem fingir ser uma linha de comando. A conversa continua sendo a única superfície principal.
+## Entrada nativa com apresentação personalizada
 
-## O que construí
+O cursor em bloco é desenhado sobre um campo de texto nativo. A apresentação visual é personalizada, enquanto edição, seleção e entrada de texto continuam apoiadas no comportamento do navegador.
 
-Construí a interface de chat em tela cheia com um cursor de bloco personalizado, histórico de prompts, estados de espera e erro e anúncios de status acessíveis.
+Os controles de teclado permitem enviar mensagens, inserir novas linhas, recuperar prompts anteriores e limpar a conversa. Estados de espera e erro também são anunciados para tecnologias assistivas.
 
-As respostas renderizam GitHub Flavored Markdown com segurança e aparecem palavra por palavra. A animação é desativada quando o visitante prefere movimento reduzido.
+As respostas são recebidas por completo antes de serem apresentadas com uma animação de revelação por palavras. A preferência por movimento reduzido desativa esse efeito.
 
-## Decisões de engenharia
+## Estado da conversa e integração com o modelo
 
-Uma Server Action do Next.js valida a conversa antes de chamar a API Responses da OpenAI. A chave da API permanece no servidor, e as solicitações desativam o armazenamento de respostas pela OpenAI.
+O navegador mantém a conversa ativa em memória e envia seu conteúdo a uma Server Action a cada nova mensagem. O servidor valida a estrutura e a ordem das mensagens antes de chamar a API Responses da OpenAI. A chave de acesso permanece no servidor, e as chamadas desativam o armazenamento de respostas da API.
 
-As mensagens permanecem na memória do navegador e desaparecem após recarregar a página ou limpar a conversa. O projeto ainda não inclui contas, histórico persistente, limites de uso ou os controles necessários para um serviço público em produção.
+Recarregar a página ou limpar o chat remove o histórico local. A limpeza também invalida respostas em andamento, evitando que uma chamada concluída depois volte a preencher a conversa.
+
+O escopo atual é o de um experimento de desenvolvimento: uma sessão temporária, sem contas, histórico persistente ou controles de uso para operação como serviço público.
