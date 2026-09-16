@@ -1,5 +1,6 @@
 ---
 slug: shell
+portfolioIndex: 4
 name: cekrause/shell
 repositoryUrl: https://github.com/cekrauseee/shell
 description: >-
